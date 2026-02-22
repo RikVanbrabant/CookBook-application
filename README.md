@@ -145,4 +145,18 @@ There are two places related to CORS:
 
 If needed, update `WebConfig.java` to allow `http://localhost:8080` as well.
 
+
+| Topic | Blue 1 | Blue 2 | Red |
+|----------|----------|----------|----------|
+| Cryptography  |          |          |          |
+| Injections   |          |          |          |
+| Vulnerable & Outdated Components  |          |          |          |
+| Authentication & Sessions  |          |          |          |
+| Authorization   |          |          |          |
+| Secure CI / CD   |          |          |          |
+| Logging & Monitoring  |          |          |          |
+| SSRF & Clickjacking  |          |          |          |
+
+
+
 ---
