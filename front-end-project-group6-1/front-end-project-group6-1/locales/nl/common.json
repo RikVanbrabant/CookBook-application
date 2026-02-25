@@ -1,0 +1,52 @@
+{
+  "Header": {
+    "slogan": "Culinare Collectie",
+    "home": "Thuis",
+    "cookbooks": "Kookboeken",
+    "recipes": "Alle Recepten",
+    "login": "Inloggen",
+    "logout": "Uitloggen"
+  },
+  "Home": {
+    "title": "Welkom bij de kookboek app",
+    "p1": "Met de MyCookbook app willen we gebruikers in staat stellen hun eigen digitale kookboek te maken.",
+    "p2": "Gebruikers kunnen meerdere kookboeken maken en beheren. Ze kunnen er recepten aan toevoegen.",
+    "p3": "Elk recept kan meerdere ingrediënten hebben. We willen dat gebruikers ook nieuwe kookideeën kunnen ontdekken op basis van bepaalde ingrediënten."
+  },
+  "Recipes": {
+    "title": "Recepten",
+    "unauthorized": "401: Niet geautoriseerd",
+    "must_login": "Je moet ingelogd zijn om de recepten te bekijken.",
+    "no_recipes": "Geen recepten gevonden.",
+    "collection_mine": "Jouw persoonlijke collectie",
+    "collection_all": "Een verzameling van alle beschikbare recepten"
+  },
+  "Cookbooks": {
+    "unauthorized": "401: Niet geautoriseerd",
+    "must_login": "Je moet ingelogd zijn om de kookboeken te bekijken."
+  },
+  "Login": {
+    "title": "Inloggen",
+    "welcome": "Welkom terug",
+    "subtitle": "Log in om toegang te krijgen tot je kookboeken",
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord",
+    "button": "Inloggen",
+    "signing_in": "Bezig met inloggen...",
+    "success": "Login succesvol! Doorverwijzen...",
+    "error_required_name": "Naam is verplicht",
+    "error_required_password": "Wachtwoord is verplicht",
+    "error_generic": "Er is een fout opgetreden. Probeer het later opnieuw."
+  },
+  "Register": {
+    "firstName": "Voornaam",
+    "lastName": "Achternaam",
+    "email": "E-mail",
+    "username": "Gebruikersnaam",
+    "password": "Wachtwoord",
+    "button": "Registreren",
+    "success": "Registratie succesvol! Doorverwijzen naar inloggen...",
+    "error_all_required": "Alle velden zijn verplicht.",
+    "error_generic": "Er is een fout opgetreden tijdens de registratie."
+  }
+}

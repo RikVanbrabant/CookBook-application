@@ -1,0 +1,52 @@
+{
+  "Header": {
+    "slogan": "Culinary Collection",
+    "home": "Home",
+    "cookbooks": "Cookbooks",
+    "recipes": "All Recipes",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "Home": {
+    "title": "Welcome to the cookbook app",
+    "p1": "With the MyCookbook app we want users to be able to create their own digital cookbook.",
+    "p2": "User can make and manage multiple cookbooks. They can add recipes to them.",
+    "p3": "Each recipe can have multiple ingredients. We want users to also be able to discover new cooking ideas based on certain ingredients."
+  },
+  "Recipes": {
+    "title": "Recipes",
+    "unauthorized": "401: Unauthorized",
+    "must_login": "You must be logged in to view the recipes.",
+    "no_recipes": "No recipes found.",
+    "collection_mine": "Your personal collection",
+    "collection_all": "A collection of all available recipes"
+  },
+  "Cookbooks": {
+    "unauthorized": "401: Unauthorized",
+    "must_login": "You must be logged in to view the cookbooks."
+  },
+  "Login": {
+    "title": "Login",
+    "welcome": "Welcome Back",
+    "subtitle": "Sign in to access your cookbooks",
+    "username": "Username",
+    "password": "Password",
+    "button": "Login",
+    "signing_in": "Signing in...",
+    "success": "Login successful! Redirecting...",
+    "error_required_name": "Name is required",
+    "error_required_password": "Password is required",
+    "error_generic": "An error occurred. Please try again later."
+  },
+  "Register": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "button": "Register",
+    "success": "Registration successful! Redirecting to login...",
+    "error_all_required": "All fields are required.",
+    "error_generic": "An error occurred during registration."
+  }
+}
