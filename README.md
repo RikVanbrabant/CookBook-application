@@ -7,7 +7,7 @@
 - Link to file in Github Repo with the README.md for running the application: https://github.com/ThomasbooneUCLL/Team-24/blob/eb974514205e56cb50e5f0fb7d17bf7ee3742e24/README.md
 - Describe the application and its functionalities (summary):
 
-  This is a cookbook application where you can login and see cookbooks and recipes of other people and also add your own
+  This is a cookbook application where you can login and see cookbooks and recipes of other people and also add your own you can also search up ingredients
 
 - List the technologies and frameworks used for front- as well as back-end (bullet points):
   - Frontend: React and Tailwind for styling
