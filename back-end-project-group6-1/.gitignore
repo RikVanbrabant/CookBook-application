@@ -36,3 +36,5 @@ build/
 /application.yaml
 
 .DS_Store
+
+.env
