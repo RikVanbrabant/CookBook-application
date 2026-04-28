@@ -25,12 +25,19 @@ const UserRegisterForm: React.FC = () => {
   };
 
   const validate = (): boolean => {
-    if (Object.values(formData).some((val) => !val.trim())) {
-      setStatusMessages([{ type: "error", message: t("error_all_required") }]);
+      if (Object.values(formData).some((val) => !val.trim())) {
+        setStatusMessages([{ type: "error", message: t("error_all_required") }]);
+        return false;
+      }
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]).{8,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      setStatusMessages([{ type: "error", message: t("error_weak_password") }]);
       return false;
     }
-    return true;
-  };
+
+      return true;
+    };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();

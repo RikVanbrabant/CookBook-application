@@ -36,13 +36,13 @@ public class DbInitializer {
 
     @PostConstruct
     public void initialize() {
-        User admin = new User("admin", "Super", "Admin", "admin@mycookbook.com", passwordEncoder.encode("admin123"), Role.ADMIN);
-        User chefMario = new User("mario", "Mario", "Rossi", "mario@italy.com", passwordEncoder.encode("pasta"), Role.USER);
-        User sarahFit = new User("sarah", "Sarah", "Fit", "sarah@health.com", passwordEncoder.encode("gymlife"), Role.USER);
-        User user1 = new User("user1", "user", "1", "user1@ucll.be", passwordEncoder.encode("user1"), Role.USER);
-        User user2 = new User("user2", "user", "2", "user2@ucll.be", passwordEncoder.encode("user2"), Role.ADMIN);
-        User frans = new User("frans", "frans", "spaans", "frans@ucll.be", passwordEncoder.encode("frans123"), Role.USER);
-        User frits = new User("frits", "frits", "frats", "frits@ucll.be", passwordEncoder.encode("frits123"), Role.ADMIN);
+        User admin = new User("admin", "Super", "Admin", "admin@mycookbook.com", passwordEncoder.encode("Admin123"), Role.ADMIN);
+        User chefMario = new User("mario", "Mario", "Rossi", "mario@italy.com", passwordEncoder.encode("Pasta123"), Role.USER);
+        User sarahFit = new User("sarah", "Sarah", "Fit", "sarah@health.com", passwordEncoder.encode("Gymlife123"), Role.USER);
+        User user1 = new User("user1", "user", "1", "user1@ucll.be", passwordEncoder.encode("Userpass1"), Role.USER);
+        User user2 = new User("user2", "user", "2", "user2@ucll.be", passwordEncoder.encode("Userpass2"), Role.ADMIN);
+        User frans = new User("frans", "frans", "spaans", "frans@ucll.be", passwordEncoder.encode("Frans123"), Role.USER);
+        User frits = new User("frits", "frits", "frats", "frits@ucll.be", passwordEncoder.encode("Frits123"), Role.ADMIN);
 
         userRepository.save(admin);
         userRepository.save(chefMario);

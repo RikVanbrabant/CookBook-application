@@ -73,6 +73,7 @@ const getProfile = async (): Promise<Profile> => {
 };
 const UserService = {
   login,
+  signup,
   logout,
   getProfile,
 };

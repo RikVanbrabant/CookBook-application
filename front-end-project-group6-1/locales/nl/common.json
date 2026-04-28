@@ -38,7 +38,8 @@
     "error_required_password": "Wachtwoord is verplicht",
     "error_generic": "Er is een fout opgetreden. Probeer het later opnieuw."
   },
-  "Register": {
+"Register": {
+    "title": "Maak een account aan",
     "firstName": "Voornaam",
     "lastName": "Achternaam",
     "email": "E-mail",
@@ -47,6 +48,7 @@
     "button": "Registreren",
     "success": "Registratie succesvol! Doorverwijzen naar inloggen...",
     "error_all_required": "Alle velden zijn verplicht.",
-    "error_generic": "Er is een fout opgetreden tijdens de registratie."
+    "error_generic": "Er is een fout opgetreden tijdens de registratie.",
+    "error_weak_password": "Je wachtwoord moet minstens 6 karakters lang zijn, 1 hoofdletter bevatten en minimaal 1 cijfer of speciaal teken."
   }
 }
