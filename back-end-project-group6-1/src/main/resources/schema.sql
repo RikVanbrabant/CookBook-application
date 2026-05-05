@@ -54,3 +54,11 @@ CREATE TABLE recipe_ingredient (
                         PRIMARY KEY (recipe_id, ingredient_id), 
                         CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipes(id) ON DELETE CASCADE, 
                         CONSTRAINT fk_ingredient FOREIGN KEY (ingredient_id) REFERENCES ingredients(id) ON DELETE CASCADE );
+CREATE TABLE IF NOT EXISTS password_reset_tokens (
+                        id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        token      VARCHAR(255) NOT NULL UNIQUE,
+                        user_id    BIGINT       NOT NULL,
+                        expiry_date TIMESTAMP   NOT NULL,
+                        used       BOOLEAN      NOT NULL DEFAULT FALSE,
+                        CONSTRAINT fk_reset_user FOREIGN KEY (user_id) REFERENCES "user"(id) ON DELETE CASCADE
+    );

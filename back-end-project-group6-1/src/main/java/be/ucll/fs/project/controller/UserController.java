@@ -2,6 +2,8 @@ package be.ucll.fs.project.controller;
 
 import be.ucll.fs.project.controller.dto.AuthenticationRequest;
 import be.ucll.fs.project.controller.dto.AuthenticationResponse;
+import be.ucll.fs.project.controller.dto.ForgotPasswordRequest;
+import be.ucll.fs.project.controller.dto.ResetPasswordRequest;
 import be.ucll.fs.project.controller.dto.UserInput;
 import be.ucll.fs.project.exception.NotFoundException;
 import be.ucll.fs.project.model.Profile;
@@ -9,6 +11,7 @@ import be.ucll.fs.project.model.Role;
 import be.ucll.fs.project.model.User;
 import be.ucll.fs.project.repository.ProfileRepository;
 import be.ucll.fs.project.service.UserService;
+import be.ucll.fs.project.service.PasswordResetService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.apache.tomcat.util.http.SameSiteCookies;
@@ -21,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -29,11 +33,15 @@ public class UserController {
     private final UserService userService;
     private final GenericResponseService responseBuilder;
     private final ProfileRepository profileRepository;
+    private final PasswordResetService passwordResetService;
 
-    public UserController(UserService userService, GenericResponseService responseBuilder, ProfileRepository profileRepository) {
+
+    public UserController(UserService userService, GenericResponseService responseBuilder, ProfileRepository profileRepository,PasswordResetService passwordResetService) {
         this.userService = userService;
         this.responseBuilder = responseBuilder;
         this.profileRepository = profileRepository;
+        this.passwordResetService = passwordResetService;
+
     }
     @PostMapping("/signup")
     public User signup(@Valid @RequestBody UserInput userInput){
@@ -81,5 +89,18 @@ public class UserController {
 
         return profileRepository.findByUser(user)
                 .orElseThrow(() -> new NotFoundException("Profile not found"));
+    }
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Map<String, String>> forgotPassword(
+            @Valid @RequestBody ForgotPasswordRequest request) {
+        passwordResetService.initiatePasswordReset(request.email());
+        return ResponseEntity.ok(Map.of("message", "If this email is registered, a reset link has been sent."));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<Map<String, String>> resetPassword(
+            @Valid @RequestBody ResetPasswordRequest request) {
+        passwordResetService.resetPassword(request.token(), request.newPassword());
+        return ResponseEntity.ok(Map.of("message", "Password updated successfully."));
     }
 }

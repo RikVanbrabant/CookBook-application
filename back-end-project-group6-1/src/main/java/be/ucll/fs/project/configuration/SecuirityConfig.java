@@ -57,6 +57,7 @@ public class SecuirityConfig {
                                         .requestMatchers("/status").permitAll()
                                         .requestMatchers("/error/**").permitAll()
                                         .requestMatchers("/users/login", "/users/signup", "/users/logout").permitAll()
+                                        .requestMatchers("/users/forgot-password", "/users/reset-password").permitAll()
                                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                                         .requestMatchers("/test-utils/**").permitAll()
                                         .anyRequest().authenticated()
