@@ -52,6 +52,12 @@ const Header: React.FC = () => {
             >
               {t("recipes")}
             </Link>
+            <Link
+              href="/security/url-validator"
+              className="text-white hover:text-red-100 font-medium text-lg"
+            >
+              Security
+            </Link>
             <Link href="/search">
               <img
                 src="/noun-magnifying-glass-7604252.png"
