@@ -25,16 +25,16 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.cors.CorsConfiguration; // Import this
-import org.springframework.web.cors.CorsConfigurationSource; // Import this
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource; // Import this
+import org.springframework.web.cors.CorsConfiguration; 
+import org.springframework.web.cors.CorsConfigurationSource; 
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.List; // Import this
+import java.util.List;
 
 @Configuration
 @EnableMethodSecurity
@@ -50,7 +50,7 @@ public class SecuirityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .cors(Customizer.withDefaults()) // Uses the corsConfigurationSource bean defined below
+                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(
                         authorizeRequests ->
                                 authorizeRequests
@@ -63,6 +63,11 @@ public class SecuirityConfig {
                                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)
+                .headers(headers -> headers
+                        .frameOptions(frameOptions -> frameOptions.deny())
+                        .contentSecurityPolicy(csp -> csp.policyDirectives("default-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'"))
+                        .httpStrictTransportSecurity(hsts -> hsts.includeSubDomains(true).maxAgeInSeconds(31536000))
+                )
                 .oauth2ResourceServer(resourceServer ->
                         resourceServer.jwt(Customizer.withDefaults())
                                 .bearerTokenResolver(new CookieBearerTokenResolver()))
@@ -88,7 +93,6 @@ public class SecuirityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    // ... (Keep your existing jwtEncoder, secretKey, and jwtDecoder beans exactly as they are)
     @Bean
     public JwtEncoder jwtEncoder(SecretKey secretKey) {
         final JWK jwk = new OctetSequenceKey.Builder(secretKey)
