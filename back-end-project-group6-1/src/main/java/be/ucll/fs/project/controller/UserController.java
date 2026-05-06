@@ -43,10 +43,12 @@ public class UserController {
         this.passwordResetService = passwordResetService;
 
     }
+
     @PostMapping("/signup")
     public User signup(@Valid @RequestBody UserInput userInput){
         return userService.signup(Role.GUEST, userInput);
     }
+
     @PostMapping("/login")
     public ResponseEntity<Object> authenticate(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response){
         var auth = userService.authenticate(authenticationRequest.username(), authenticationRequest.password());
@@ -63,22 +65,25 @@ public class UserController {
         auth = new AuthenticationResponse(auth.message(), null, auth.username(), auth.fullname(), auth.role());
         return ResponseEntity.ok(auth);
     }
+
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpServletResponse response) {
         ResponseCookie cookie = ResponseCookie.from("authToken", "")
                 .httpOnly(true)
-                .secure(true)
+                .secure(false)
                 .path("/")
                 .maxAge(0)
-                .sameSite(SameSiteCookies.NONE.toString())
+                .sameSite(SameSiteCookies.LAX.toString())
                 .build();
         response.addHeader(HttpHeaders.SET_COOKIE, cookie.toString());
         return ResponseEntity.ok().build();
     }
+
     @GetMapping
     public List<User> getUsers() {
         return userService.getAllUsers();
     }
+
     @GetMapping("/profile")
     public Profile getProfile(Authentication authentication) {
         String username = authentication.getName();
@@ -90,6 +95,7 @@ public class UserController {
         return profileRepository.findByUser(user)
                 .orElseThrow(() -> new NotFoundException("Profile not found"));
     }
+    
     @PostMapping("/forgot-password")
     public ResponseEntity<Map<String, String>> forgotPassword(
             @Valid @RequestBody ForgotPasswordRequest request) {

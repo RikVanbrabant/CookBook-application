@@ -17,10 +17,12 @@ import be.ucll.fs.project.repository.CookbookRepository;
 public class CookbookService {
     private final CookbookRepository cookbookRepository;
     private final UserRepository userRepository;
+    private final InputSecurityService inputSecurityService;
 
-    public CookbookService(CookbookRepository cookbookRepository, UserRepository userRepository) {
+    public CookbookService(CookbookRepository cookbookRepository, UserRepository userRepository, InputSecurityService inputSecurityService) {
         this.cookbookRepository = cookbookRepository;
         this.userRepository = userRepository;
+        this.inputSecurityService = inputSecurityService;
     }
 
     public List<Cookbook> getAllCookbooks() {
@@ -41,7 +43,7 @@ public class CookbookService {
                 .orElseThrow(() -> new NotFoundException("User not found"));
 
         Cookbook cookbook = new Cookbook(
-                cookbookInput.title(),
+                inputSecurityService.cleanPlainText(cookbookInput.title(), "title"),
                 0,
                 user
         );

@@ -20,15 +20,22 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
     private final CookbookRepository cookbookRepository;
     private final UserRepository userRepository;
+    private final InputSecurityService inputSecurityService;
 
-    public RecipeService(RecipeRepository recipeRepository, CookbookRepository cookbookRepository, UserRepository userRepository) {
+    public RecipeService(RecipeRepository recipeRepository, CookbookRepository cookbookRepository, UserRepository userRepository, InputSecurityService inputSecurityService) {
         this.recipeRepository = recipeRepository;
         this.cookbookRepository = cookbookRepository;
         this.userRepository = userRepository;
+        this.inputSecurityService = inputSecurityService;
     }
 
     public List<Recipe> getAllRecipes() {
         return recipeRepository.findAll();
+    }
+
+    public List<Recipe> searchRecipesByTitle(String title) {
+        String cleanedTitle = inputSecurityService.cleanPlainText(title, "title");
+        return recipeRepository.findByTitleContainingIgnoreCase(cleanedTitle);
     }
 
     public List<Recipe> getRecipesByUsername(String username) {
@@ -50,7 +57,8 @@ public class RecipeService {
             throw new RuntimeException("You do not have permission to add recipes to this cookbook.");
         }
 
-        Recipe recipe = new Recipe(recipeInput.title(), recipeInput.prepTime(), recipeInput.cookTime());
+        String safeTitle = inputSecurityService.cleanPlainText(recipeInput.title(), "title");
+        Recipe recipe = new Recipe(safeTitle, recipeInput.prepTime(), recipeInput.cookTime());
 
         cookbook.addRecipe(recipe);
         Recipe saved = recipeRepository.save(recipe);
@@ -68,7 +76,7 @@ public class RecipeService {
             throw new RuntimeException("You do not have permission to edit this recipe.");
         }
 
-        recipe.setTitle(recipeInput.title());
+        recipe.setTitle(inputSecurityService.cleanPlainText(recipeInput.title(), "title"));
         recipe.setPrepTime(recipeInput.prepTime());
         recipe.setCookTime(recipeInput.cookTime());
 

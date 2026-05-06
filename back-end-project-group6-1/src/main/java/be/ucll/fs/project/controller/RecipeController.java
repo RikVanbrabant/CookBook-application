@@ -29,6 +29,11 @@ public class RecipeController {
         }
         return recipeService.getAllRecipes();
     }
+    @GetMapping("/search")
+    public List<Recipe> searchRecipes(@RequestParam String title) {
+        return recipeService.searchRecipesByTitle(title);
+    }
+
     @PutMapping("/{id}")
     @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
     public Recipe updateRecipe(

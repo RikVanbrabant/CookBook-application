@@ -13,4 +13,5 @@ import be.ucll.fs.project.model.Recipe;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findByCookbookId(Long cookbookId);
     List<Recipe> findByCookbookUserId(Long userId);
+    List<Recipe> findByTitleContainingIgnoreCase(String title);
 }
