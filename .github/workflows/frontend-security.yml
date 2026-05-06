@@ -1,0 +1,43 @@
+name: Frontend security checks
+
+on:
+  pull_request:
+    paths:
+      - "front-end-project-group6-1/**"
+      - ".github/workflows/frontend-security.yml"
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  build-audit-sbom:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front-end-project-group6-1
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: front-end-project-group6-1/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+      - name: Build frontend
+        run: npm run build
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:3000
+      - name: Generate frontend SBOM
+        run: npx @cyclonedx/cyclonedx-npm --output-file frontend-sbom.json
+      - name: Upload frontend SBOM
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-sbom
+          path: front-end-project-group6-1/frontend-sbom.json
