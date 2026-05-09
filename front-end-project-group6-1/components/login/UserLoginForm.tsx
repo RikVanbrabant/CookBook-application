@@ -50,12 +50,7 @@ const UserLoginForm: React.FC = () => {
 
     try {
       const loggedInUser = await UserService.login(user);
-      setStatusMessages([
-        {
-          message: t("success"),
-          type: "success",
-        },
-      ]);
+      setStatusMessages([{ message: t("success"), type: "success" }]);
       login(loggedInUser);
       setTimeout(() => {
         router.push("/");
@@ -89,7 +84,7 @@ const UserLoginForm: React.FC = () => {
                   "bg-red-50 text-red-700 border-red-200": type === "error",
                   "bg-green-50 text-green-700 border-green-200":
                     type === "success",
-                }
+                },
               )}
             >
               {message}
@@ -118,7 +113,7 @@ const UserLoginForm: React.FC = () => {
                   nameError,
                 "border-gray-300 focus:ring-blue-100 focus:border-blue-500":
                   !nameError,
-              }
+              },
             )}
             placeholder="e.g. mario"
           />
@@ -128,12 +123,21 @@ const UserLoginForm: React.FC = () => {
         </div>
 
         <div>
-          <label
-            htmlFor="passwordInput"
-            className="block mb-2 text-sm font-semibold text-gray-700"
-          >
-            {t("password")}
-          </label>
+          {/* Only change from original: added the flex row with "Forgot password?" link */}
+          <div className="flex justify-between items-center mb-2">
+            <label
+              htmlFor="passwordInput"
+              className="text-sm font-semibold text-gray-700"
+            >
+              {t("password")}
+            </label>
+            <a
+              href="/forgot-password"
+              className="text-xs text-blue-600 hover:underline"
+            >
+              Forgot password?
+            </a>
+          </div>
           <input
             id="passwordInput"
             type="password"
@@ -146,7 +150,7 @@ const UserLoginForm: React.FC = () => {
                   passwordError,
                 "border-gray-300 focus:ring-blue-100 focus:border-blue-500":
                   !passwordError,
-              }
+              },
             )}
             placeholder="e.g. mario123"
           />
@@ -166,7 +170,7 @@ const UserLoginForm: React.FC = () => {
               "bg-blue-600 hover:bg-blue-700 hover:shadow-lg transform hover:-translate-y-0.5":
                 !isLoading,
               "bg-blue-400 cursor-not-allowed": isLoading,
-            }
+            },
           )}
         >
           {isLoading ? (
@@ -182,12 +186,12 @@ const UserLoginForm: React.FC = () => {
                   r="10"
                   stroke="currentColor"
                   strokeWidth="4"
-                ></circle>
+                />
                 <path
                   className="opacity-75"
                   fill="currentColor"
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
+                />
               </svg>
               {t("signing_in")}
             </span>
