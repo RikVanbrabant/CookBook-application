@@ -58,6 +58,12 @@ const Header: React.FC = () => {
             >
               Security
             </Link>
+            <Link
+              href={`/profile`}
+              className="text-white hover:text-red-100 font-medium text-lg"
+            >
+              Profile
+            </Link>
             <Link href="/search">
               <img
                 src="/noun-magnifying-glass-7604252.png"
