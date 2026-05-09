@@ -40,4 +40,5 @@ build/
 .env
 
 #logs
-logs/
+/logs/
+*.log
