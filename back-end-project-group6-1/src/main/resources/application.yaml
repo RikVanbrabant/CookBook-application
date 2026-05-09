@@ -40,8 +40,12 @@ spring:
           auth: false
           starttls:
             enable: false
+
+  mvc:
+    problemdetails:
+      enabled: true
 jwt:
-  secret-key: ${JWT_SECRET_KEY}
+  secret-key: ${JWT_SECRET_KEY:}
 app:
   frontend:
     url: ${APP_FRONTEND_URL:http://localhost:8080}
@@ -51,7 +55,8 @@ cors:
     - http://127.0.0.1:8080
 logging:
   level:
-    org.springframework.transaction: DEBUG
-    org.springframework.orm.jpa: DEBUG
-    org.springframework.jdbc: DEBUG
-    org.springframework.security: DEBUG
+    root: INFO
+    org.springframework.security: WARN
+    org.springframework.orm.jpa: WARN
+    org.springframework.jdbc: WARN
+    org.springframework.transaction: WARN
