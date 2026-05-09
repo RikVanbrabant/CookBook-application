@@ -1,5 +1,4 @@
 "use client";
-import Header from "@components/header";
 import UserService from "@services/UserService";
 import { Profile } from "@types";
 import { useEffect, useState } from "react";
@@ -26,7 +25,6 @@ export default function ProfilePage() {
 
   return (
     <>
-      <Header />
       <main className="p-6 min-h-screen flex flex-col items-center bg-gray-50">
         <div className="bg-white shadow-md rounded-lg p-8 max-w-lg w-full mt-10">
           <h1 className="text-3xl font-bold text-red-600 mb-6 text-center">
