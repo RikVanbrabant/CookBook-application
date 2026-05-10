@@ -137,8 +137,8 @@ The front-end runs on:
 
 The front-end login is **hardcoded** (not stored in the database). You can log in with:
 
-- **user**: `user1` / **password**: `pass1`
-- **user**: `admin` / **password**: `admin`
+- **user**: `admin` / **password**: `Admin123`
+- **user**: `mario` / **password**: `Pasta123`
 
 Defined in:
 
