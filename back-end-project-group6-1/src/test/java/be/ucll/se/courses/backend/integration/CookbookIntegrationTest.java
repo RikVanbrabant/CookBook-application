@@ -7,6 +7,7 @@ import be.ucll.fs.project.model.Recipe;
 import be.ucll.fs.project.model.Role;
 import be.ucll.fs.project.model.User;
 import be.ucll.fs.project.repository.CookbookRepository;
+import be.ucll.fs.project.repository.FamilyRepository;
 import be.ucll.fs.project.repository.RecipeRepository;
 import be.ucll.fs.project.repository.UserRepository;
 import be.ucll.fs.project.service.JwtService;
@@ -44,7 +45,8 @@ class CookbookIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private FamilyRepository familyRepository;
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -55,6 +57,7 @@ class CookbookIntegrationTest {
     void setUp() {
         recipeRepository.deleteAll();
         cookbookRepository.deleteAll();
+        familyRepository.deleteAll();
         userRepository.deleteAll();
     }
 
