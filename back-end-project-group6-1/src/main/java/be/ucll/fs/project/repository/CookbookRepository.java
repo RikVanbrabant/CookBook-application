@@ -12,5 +12,6 @@ import be.ucll.fs.project.model.Cookbook;
 @Repository
 public interface CookbookRepository extends JpaRepository<Cookbook, Long> {
     List<Cookbook> findByUserId(Long userId);
+    List<Cookbook> findByFamilyId(Long familyId);
 
 }

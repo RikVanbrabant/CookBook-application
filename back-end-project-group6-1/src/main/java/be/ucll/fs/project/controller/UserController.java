@@ -1,10 +1,6 @@
 package be.ucll.fs.project.controller;
 
-import be.ucll.fs.project.controller.dto.AuthenticationRequest;
-import be.ucll.fs.project.controller.dto.AuthenticationResponse;
-import be.ucll.fs.project.controller.dto.ForgotPasswordRequest;
-import be.ucll.fs.project.controller.dto.ResetPasswordRequest;
-import be.ucll.fs.project.controller.dto.UserInput;
+import be.ucll.fs.project.controller.dto.*;
 import be.ucll.fs.project.exception.NotFoundException;
 import be.ucll.fs.project.model.Profile;
 import be.ucll.fs.project.model.Role;
@@ -17,6 +13,7 @@ import jakarta.validation.Valid;
 import org.apache.tomcat.util.http.SameSiteCookies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 
 import org.springdoc.core.service.GenericResponseService;
@@ -103,10 +100,29 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public List<User> getUsers() {
         return userService.getAllUsers();
     }
+    @GetMapping("/me")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER', 'ROLE_GUEST')")
+    public User getCurrentUser(Authentication authentication) {
+        return userService.getCurrentUser(authentication.getName());
+    }
+    @PatchMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN', 'ROLE_USER')")
+    public User patchUser(@PathVariable Long id,
+                          @Valid @RequestBody UserPatchRequest patch,
+                          Authentication authentication) {
+        return userService.patchUser(id, patch, authentication.getName());
+    }
 
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
     @GetMapping("/profile")
     public Profile getProfile(Authentication authentication) {
         String username = authentication.getName();

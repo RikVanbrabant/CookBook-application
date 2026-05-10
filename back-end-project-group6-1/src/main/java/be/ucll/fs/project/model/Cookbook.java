@@ -30,7 +30,10 @@ public class Cookbook {
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
+    @ManyToOne
+    @JoinColumn(name = "family_id")
+    @JsonIgnore
+    private Family family;
     protected Cookbook() {}
 
     public Cookbook(String title, int numOfRecipes, User user) {
@@ -82,5 +85,12 @@ public class Cookbook {
     }
     public String getOwner() {
         return user != null ? user.getUsername() : null;
+    }
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
     }
 }

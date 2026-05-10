@@ -17,6 +17,7 @@ public class DbInitializer {
     private final UserRepository userRepository;
     private final IngredientRepository ingredientRepository;
     private final ProfileRepository profileRepository;
+    private final FamilyRepository familyRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -25,12 +26,14 @@ public class DbInitializer {
                          UserRepository userRepository,
                          IngredientRepository ingredientRepository,
                          ProfileRepository profileRepository,
+                         FamilyRepository familyRepository,
                          PasswordEncoder passwordEncoder) {
         this.cookbookRepository = cookbookRepository;
         this.recipeRepository = recipeRepository;
         this.userRepository = userRepository;
         this.ingredientRepository = ingredientRepository;
         this.profileRepository = profileRepository;
+        this.familyRepository = familyRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -156,29 +159,29 @@ public class DbInitializer {
         smoothie.addIngredient(honey);
 
         ingredientRepository.saveAll(List.of(
-            spaghetti, 
-            bacon, 
-            eggs, 
-            parmesan, 
-            blackPepper, 
-            garlic, 
-            milk, 
-            mincedMeat, 
-            tomatoSauce, 
-            onion,
-            carrot, 
-            pasta, 
-            pesto, 
-            pineNuts, 
-            basil, 
-            oats, 
-            blueberries, 
-            strawberries, 
-            honey, 
-            banana, 
-            spinach, 
-            appleJuice, 
-            avocado
+                spaghetti,
+                bacon,
+                eggs,
+                parmesan,
+                blackPepper,
+                garlic,
+                milk,
+                mincedMeat,
+                tomatoSauce,
+                onion,
+                carrot,
+                pasta,
+                pesto,
+                pineNuts,
+                basil,
+                oats,
+                blueberries,
+                strawberries,
+                honey,
+                banana,
+                spinach,
+                appleJuice,
+                avocado
         ));
 
         recipeRepository.save(carbonara);
@@ -189,5 +192,17 @@ public class DbInitializer {
 
         cookbookRepository.save(italianClassics);
         cookbookRepository.save(healthyBreakfasts);
+
+
+        Family rossiFamily = new Family("Rossi Family", chefMario);
+        rossiFamily.addMember(sarahFit);
+        familyRepository.save(rossiFamily);
+
+        Family spaansHousehold = new Family("Spaans Household", frans);
+        spaansHousehold.addMember(user1);
+        familyRepository.save(spaansHousehold);
+
+        pizzaSecrets.setFamily(rossiFamily);
+        cookbookRepository.save(pizzaSecrets);
     }
 }

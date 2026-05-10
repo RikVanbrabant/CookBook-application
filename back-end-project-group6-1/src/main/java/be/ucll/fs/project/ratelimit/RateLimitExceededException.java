@@ -1,0 +1,20 @@
+package be.ucll.fs.project.ratelimit;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+
+@ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
+public class RateLimitExceededException extends RuntimeException {
+
+    private final long retryAfterSeconds;
+
+    public RateLimitExceededException(long retryAfterSeconds) {
+        super("Too many requests. Please try again in " + retryAfterSeconds + " seconds.");
+        this.retryAfterSeconds = retryAfterSeconds;
+    }
+
+    public long getRetryAfterSeconds() {
+        return retryAfterSeconds;
+    }
+}
