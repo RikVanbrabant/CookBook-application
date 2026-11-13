@@ -1,7 +1,7 @@
 # Team 24 – Cookbook Application
 
 - **Team members**: Thomas Boone (r1039745), Rijensh Limbu (r0884125), Rik Vanbrabant (r1044068)
-- **Repository**: https://github.com/ThomasbooneUCLL/Team-24.git
+- **Repository**: https://github.com/RikVanbrabant/CookBook-application
 
 ## 1. Application overview
 
