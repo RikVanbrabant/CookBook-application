@@ -1,0 +1,21 @@
+# Render Blueprint: deployt de Spring Boot back-end als Docker web service.
+# In Render: New + > Blueprint > kies deze repo.
+#
+# De back-end gebruikt een in-memory H2-database. schema.sql verwijdert en
+# herschept alle tabellen bij elke start (en DbInitializer vult ze opnieuw),
+# dus een aparte PostgreSQL-database zou hier toch geen data bewaren.
+services:
+  - type: web
+    name: cookbook-backend
+    runtime: docker
+    plan: free
+    rootDir: back-end-project-group6-1
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      # Vaste sleutel om JWT-tokens te ondertekenen (base64, 256 bit)
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      # URL van de Vercel front-end (voor links in e-mails); vul je in bij het aanmaken
+      - key: APP_FRONTEND_URL
+        sync: false
