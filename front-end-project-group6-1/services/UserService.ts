@@ -1,8 +1,9 @@
+import { API_BASE } from "./apiBase";
 import { User, Profile } from "@types";
 
 const login = async (user: User): Promise<User> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/login`,
+    `${API_BASE}/users/login`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -19,7 +20,7 @@ const login = async (user: User): Promise<User> => {
 
 const signup = async (user: User): Promise<User> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/signup`,
+    `${API_BASE}/users/signup`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,7 +36,7 @@ const signup = async (user: User): Promise<User> => {
 
 const logout = async (): Promise<void> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/logout`,
+    `${API_BASE}/users/logout`,
     { method: "POST", credentials: "include" },
   );
   if (!response.ok) {
@@ -46,7 +47,7 @@ const logout = async (): Promise<void> => {
 
 const getProfile = async (): Promise<Profile> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/profile`,
+    `${API_BASE}/users/profile`,
     {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -59,7 +60,7 @@ const getProfile = async (): Promise<Profile> => {
 
 const forgotPassword = async (email: string): Promise<void> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/forgot-password`,
+    `${API_BASE}/users/forgot-password`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -77,7 +78,7 @@ const resetPassword = async (
   newPassword: string,
 ): Promise<void> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/users/reset-password`,
+    `${API_BASE}/users/reset-password`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

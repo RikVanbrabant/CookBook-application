@@ -3,7 +3,14 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./i18n.ts");
 
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:3000";
+
 const nextConfig: NextConfig = {
+  // Proxy: /api/... in de browser -> backend. Zo werkt de login-cookie ook
+  // als frontend en backend op verschillende domeinen draaien (Vercel + Render).
+  async rewrites() {
+    return [{ source: "/api/:path*", destination: `${BACKEND_URL}/:path*` }];
+  },
   async headers() {
     return [
       {

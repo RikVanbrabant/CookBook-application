@@ -1,3 +1,4 @@
+import { API_BASE } from "./apiBase";
 import { Cookbook, Recipe } from "@types";
 
 const getHeaders = (token?: string): HeadersInit => {
@@ -17,7 +18,7 @@ const getAllCookbooks = async (
   const query = mine ? "?mine=true" : "";
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/cookbooks${query}`,
+    `${API_BASE}/cookbooks${query}`,
     {
       method: "GET",
       headers: getHeaders(token),
@@ -38,7 +39,7 @@ const getCookbookById = async (
   token?: string
 ): Promise<Cookbook> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/cookbooks/${id}`,
+    `${API_BASE}/cookbooks/${id}`,
     {
       method: "GET",
       headers: getHeaders(token),
@@ -60,7 +61,7 @@ const getRecipesByCookbookId = async (
   token?: string
 ): Promise<Recipe[]> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/cookbooks/${cookbookId}/recipes`,
+    `${API_BASE}/cookbooks/${cookbookId}/recipes`,
     {
       method: "GET",
       headers: getHeaders(token),
@@ -80,7 +81,7 @@ const getRecipesByCookbookId = async (
   return response.json();
 };
 const createCookbook = async (title: string): Promise<Cookbook> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cookbooks`, {
+  const response = await fetch(`${API_BASE}/cookbooks`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

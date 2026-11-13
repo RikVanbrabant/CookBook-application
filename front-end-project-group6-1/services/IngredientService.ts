@@ -1,3 +1,4 @@
+import { API_BASE } from "./apiBase";
 import { Ingredient } from "@types";
 
 const getHeaders = (token?: string): HeadersInit => {
@@ -14,7 +15,7 @@ const getAllIngredients = async (
     token?: string,
 ): Promise<Ingredient[]> => {
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/ingredients`,
+        `${API_BASE}/ingredients`,
         {
             method: "GET",
             headers: getHeaders(token),

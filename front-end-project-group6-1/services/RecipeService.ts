@@ -1,3 +1,4 @@
+import { API_BASE } from "./apiBase";
 import { Recipe } from "@types";
 
 const getHeaders = (token?: string): HeadersInit => {
@@ -17,7 +18,7 @@ const getAllRecipes = async (
   const query = mine ? "?mine=true" : "";
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/recipes${query}`,
+    `${API_BASE}/recipes${query}`,
     {
       method: "GET",
       headers: getHeaders(token),
@@ -42,7 +43,7 @@ const addRecipeToCookbook = async (
   console.log("Sending recipe:", recipe);
   console.log("Sending JSON:", JSON.stringify(recipe));
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/cookbooks/${cookbookId}/recipes`,
+    `${API_BASE}/cookbooks/${cookbookId}/recipes`,
     {
       method: "POST",
       headers: getHeaders(token),
@@ -65,7 +66,7 @@ const updateRecipe = async (
   token?: string
 ): Promise<Recipe> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/recipes/${id}`,
+    `${API_BASE}/recipes/${id}`,
     {
       method: "PUT",
       headers: getHeaders(token),
@@ -87,7 +88,7 @@ const deleteRecipeFromCookbook = async (
   token?: string
 ): Promise<void> => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/recipes/${recipeId}`,
+    `${API_BASE}/recipes/${recipeId}`,
     {
       method: "DELETE",
       headers: getHeaders(token),

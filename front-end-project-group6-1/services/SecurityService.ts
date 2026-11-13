@@ -1,10 +1,11 @@
+import { API_BASE } from "./apiBase";
 export type UrlValidationResult = {
   allowed: boolean;
   reason: string;
 };
 
 const validateUrl = async (url: string): Promise<UrlValidationResult> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/security/url-validate`, {
+  const response = await fetch(`${API_BASE}/security/url-validate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "include",
